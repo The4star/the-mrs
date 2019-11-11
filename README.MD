@@ -1,5 +1,5 @@
-# Express Template App
-## use as a boilerplate for express app using ejs templating
+# React Server Template
+## use as a boilerplate for express app using React
 
 <!-- ![tictactoe gif](./img/tictactoe.gif "Demo gif") -->
 
@@ -13,7 +13,7 @@ Deployed Site: 'insert here'
 
 ## Purpose 
 
-'insert here'
+'use as a boilerplate for express app using React'
 
 ## Technologies used
 
@@ -28,4 +28,4 @@ Deployed Site: 'insert here'
 
 ## Functionality and Features
 
-'insert here'
+'use as a boilerplate for express app using React'
