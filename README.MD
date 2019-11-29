@@ -1,5 +1,4 @@
-# React Server Template
-## use as a boilerplate for express app using React
+# The Mrs
 
 <!-- ![tictactoe gif](./img/tictactoe.gif "Demo gif") -->
 
@@ -13,7 +12,7 @@ Deployed Site: 'insert here'
 
 ## Purpose 
 
-'use as a boilerplate for express app using React'
+'A simple chatbot I built for learning purposes'
 
 ## Technologies used
 
@@ -22,10 +21,8 @@ Deployed Site: 'insert here'
 * Javascript 
 * Mongoose 
 * MongoDB
-* Bcrypt
-* Passport.js
-* Morgan
+* DialogFlow
 
 ## Functionality and Features
 
-'use as a boilerplate for express app using React'
+'A chatbot that helps you choose where to eat in Melbourne tonight!' 
