@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { textQuery } = require('../config/chatbot')
-
-
-
-const User = require('../models/User');
+const { textQuery, eventQuery } = require('../config/chatbot')
 
 router.get('/',  (req, res, next) => {
     res.send({response: 'hello'})
@@ -23,7 +19,12 @@ router.post('/api/df_text_query', async (req, res) => {
 })
 
 router.post('/api/df_event_query', async (req, res) => {
-    res.send({'do': 'event query'})
+    try {
+        const response = await eventQuery(req.body.event, req.body.parameters)
+        res.send(response)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 

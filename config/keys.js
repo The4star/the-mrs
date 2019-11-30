@@ -1,5 +1,5 @@
-module.exports = {
-    googleProjectID: 'reactpageagent-sjgrax',
-    dialogFlowSessionID: 'the-mrs-session',
-    dialogFlowSessionLanguageCode: 'en-US'
+if (process.env.NODE_ENV === 'production') {
+    module.exports = require('./prod')
+} else {
+    module.exports = require('./dev')
 }
