@@ -4,6 +4,7 @@
   "description": "<!-- ![tictactoe gif](./img/tictactoe.gif \"Demo gif\") -->",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node server.js"
   },
   "keywords": [],
