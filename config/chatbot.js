@@ -83,15 +83,23 @@ const handleAction = (response) => {
 }
 
 const saveRegistration = async (fields) => {
-    const registration = new Registration({
+
+    const alreadyexists = await Registration.findOne({
+        email: fields.email.stringValue
+    })
+
+    if (!alreadyexists) {
+         const registration = new Registration({
         name: fields.name.stringValue,
         email: fields.email.stringValue
     })
-    try {
-       await registration.save();
-    } catch (error) {
-        console.log(error)
+        try {
+        await registration.save();
+        } catch (error) {
+            console.log(error)
+        }
     }
+   
 }
 
 module.exports = {
