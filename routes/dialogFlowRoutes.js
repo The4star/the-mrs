@@ -23,7 +23,7 @@ router.post('/api/df_event_query', async (req, res) => {
         const response = await eventQuery(req.body.event, req.body.userId, req.body.parameters)
         res.send(response)
     } catch (error) {
-        res.status(500).send(error)
+        res.status(500).send('error ' + error)
     }
 })
 

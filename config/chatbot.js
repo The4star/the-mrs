@@ -43,7 +43,7 @@ const textQuery = async (text, userId, parameters = {}) => {
     return result    
 }
 
-const eventQuery = async (event, parameters = {}) => {
+const eventQuery = async (event, userId, parameters = {}) => {
     let sessionPath = sessionClient.sessionPath(googleProjectID, dialogFlowSessionID + userId)
     let self = module.exports;
 
@@ -73,17 +73,13 @@ const handleAction = (response) => {
     let queryResult = response[0].queryResult;
 
     switch (queryResult.action) {
-        case RestaurantRecommendations.RestaurantRecommendations-yes:
+        case "RestaurantRecommendations.RestaurantRecommendations-yes":
             if (queryResult.allRequiredParamsPresent) {
                 self.saveRegistration(queryResult.parameters.fields);          
             }
             break;
-        default:
-            
-            break;
     }
-
-    return response
+    return response;
 }
 
 const saveRegistration = async (fields) => {
