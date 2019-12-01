@@ -79,9 +79,11 @@ const handleAction = (response) => {
             }
             break;
         default:
-            return response
+            
             break;
     }
+
+    return response
 }
 
 const saveRegistration = async (fields) => {
