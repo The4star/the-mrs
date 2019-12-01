@@ -10,7 +10,7 @@ router.get('/',  (req, res, next) => {
 router.post('/api/df_text_query', async (req, res) => {
 
     try {
-        const response = await textQuery(req.body.text, req.body.parameters)
+        const response = await textQuery(req.body.text, req.body.userId, req.body.parameters)
         res.send(response)
     } catch (error) {
         res.status(500).send(error)
@@ -20,7 +20,7 @@ router.post('/api/df_text_query', async (req, res) => {
 
 router.post('/api/df_event_query', async (req, res) => {
     try {
-        const response = await eventQuery(req.body.event, req.body.parameters)
+        const response = await eventQuery(req.body.event, req.body.userId, req.body.parameters)
         res.send(response)
     } catch (error) {
         res.status(500).send(error)
