@@ -1,17 +1,21 @@
 const dialogflow = require('dialogflow');
 const structjson = require('structjson')
 
+// Models
+const Registration = require('../models/Registration')
+
+// keys
 const {googleProjectID, dialogFlowSessionID, dialogFlowSessionLanguageCode, googleClientEmail, googlePrivateKey} = require('./keys')
 
 const credentials = {
     client_email: googleClientEmail,
     private_key: googlePrivateKey
 }
+
 const sessionClient = new dialogflow.SessionsClient({projectId: googleProjectID, credentials});
-const sessionPath = sessionClient.sessionPath(googleProjectID, dialogFlowSessionID)
 
-const textQuery = async (text, parameters = {}) => {
-
+const textQuery = async (text, userId, parameters = {}) => {
+    let sessionPath = sessionClient.sessionPath(googleProjectID, dialogFlowSessionID + userId)
     let self = module.exports;
 
     const request = {
@@ -40,7 +44,7 @@ const textQuery = async (text, parameters = {}) => {
 }
 
 const eventQuery = async (event, parameters = {}) => {
-
+    let sessionPath = sessionClient.sessionPath(googleProjectID, dialogFlowSessionID + userId)
     let self = module.exports;
 
     const request = {
@@ -65,12 +69,37 @@ const eventQuery = async (event, parameters = {}) => {
 }
 
 const handleAction = (response) => {
-    return response
+    let self = module.exports;
+    let queryResult = response[0].queryResult;
+
+    switch (queryResult.action) {
+        case RestaurantRecommendations.RestaurantRecommendations-yes:
+            if (queryResult.allRequiredParamsPresent) {
+                self.saveRegistration(queryResult.parameters.fields);          
+            }
+            break;
+        default:
+            return response
+            break;
+    }
+}
+
+const saveRegistration = async (fields) => {
+    const registration = new Registration({
+        name: fields.name.stringValue,
+        email: fields.email.stringValue
+    })
+    try {
+       await registration.save();
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = {
     textQuery,
     eventQuery,
-    handleAction
+    handleAction,
+    saveRegistration
 }
 
